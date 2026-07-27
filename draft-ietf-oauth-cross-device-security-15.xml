@@ -1647,10 +1647,10 @@ you have any objections.
               <organization>Microsoft</organization>
             </author>
             <author initials="M. B." surname="Jones" fullname="Michael B. Jones">
-              <organization>Microsoft</organization>
+              <organization>Self-Issued Consulting</organization>
             </author>
             <author initials="T." surname="Lodderstedt" fullname="Torsten Lodderstedt">
-              <organization>yes.com</organization>
+              <organization>SPRIND</organization>
             </author>
             <date year="2022" month="November"/>
           </front>
@@ -1697,7 +1697,7 @@ you have any objections.
         <reference anchor="Bauer2022" target="https://elib.uni-stuttgart.de/handle/11682/12417">
           <front>
             <title>Formal analysis of self-issued OpenID providers</title>
-            <author initials="C." surname="Bauer" fullname="C Bauer">
+            <author initials="C." surname="Bauer" fullname="Christina Bauer">
               <organization/>
             </author>
             <date year="2022"/>
