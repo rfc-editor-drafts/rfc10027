@@ -184,19 +184,21 @@ Table of Contents
 1.  Introduction
 
    Protocol flows that span multiple end-user devices are in widespread
-   use today.  These flows are often referred to as <strike><font color='red'>cross-device flows.</font></strike> <strong><font color='green'>"cross-device
-   flows".</font></strong>  A common example is a user that uses their mobile phone to
-   scan a QR code from their smart TV, giving an app on the TV access to
-   their video streaming service.  Besides QR codes, other mechanisms
-   are often <strike><font color='red'>used</font></strike> <strong><font color='green'>used,</font></strong> such as PIN codes that the user has to enter on one
-   of the devices, or push notifications to a mobile app that the user
-   has to approve.
+   use today.  These flows are often referred to as cross-device flows.
+   A common example is a user that uses their mobile phone to scan a QR
+   code from their smart TV, giving an app on the TV access to their
+   video streaming service.  Besides QR codes, other mechanisms are
+   often <strike><font color='red'>used</font></strike> <strong><font color='green'>used,</font></strong> such as PIN codes that the user has to enter on one of
+   the
+   <strike><font color='red'>devices,</font></strike> <strong><font color='green'>devices</font></strong> or push notifications to a mobile app that the user has
+   to approve.
 
-   In all cases, it is up to the user to decide whether to grant
-   authorization or not.  However, the QR code or PIN <strike><font color='red'>are</font></strike> <strong><font color='green'>is</font></strong> transferred via
-   an unauthenticated channel, leaving it up to the user to decide in
-   which context an authorization is requested.  This may be exploited
-   by attackers to gain unauthorized access to a user's resources.
+   In all cases, it is up to the user to decide whether <strong><font color='green'>or not</font></strong> to grant
+   <strike><font color='red'>authorization or not.</font></strike>
+   <strong><font color='green'>authorization.</font></strong>  However, the QR code or PIN <strike><font color='red'>are</font></strike> <strong><font color='green'>is</font></strong> transferred via an
+   unauthenticated channel, leaving it up to the user to decide in which
+   context an authorization is requested.  This may be exploited by
+   attackers to gain unauthorized access to a user's resources.
 
    To accommodate the various nuances of cross-device flows, this
    document distinguishes between use cases where the cross-device flow
@@ -210,7 +212,7 @@ Table of Contents
    authorization flow on one device (the Consumption Device) and then
    use a second, personally trusted, device <strike><font color='red'>(Authorization</font></strike> <strong><font color='green'>(the Authorization</font></strong> Device)
    to authorize the Consumption Device to access a resource (e.g.,
-   access to a service).  The <strike><font color='red'>Device Authorization Grant</font></strike> <strong><font color='green'>device authorization grant</font></strong> [RFC8628] and <strike><font color='red'>Client-
+   access to a service).  The Device Authorization Grant [RFC8628] and <strike><font color='red'>Client-
    Initiated</font></strike>
    <strong><font color='green'>Client-Initiated</font></strong> Backchannel Authentication <strong><font color='green'>(CIBA)</font></strong> [CIBA] are two
    examples of popular cross-device authorization flows.
@@ -233,12 +235,12 @@ Table of Contents
    used in phishing attacks to gain unauthorized access to the user's
    data.
 
-   Several publications have emerged in the public domain <strike><font color='red'>([ARTDCPHISH],</font></strike> <strong><font color='green'>(e.g.,
-   [ARTDCPHISH],</font></strong> [DCFLOWPHISH], [NEWDCPHISH], [DEFCON29], [DCATTACK], <strike><font color='red'>[SQPHISH]),
-   describing</font></strike>
-   <strong><font color='green'>and [SQPHISH]) that describe</font></strong> how the unauthenticated channel can be
-   exploited using social engineering techniques borrowed from phishing.
-   Unlike traditional phishing attacks, these attacks don't harvest
+   Several publications have emerged in the public domain ([ARTDCPHISH],
+   [DCFLOWPHISH], [NEWDCPHISH], [DEFCON29], [DCATTACK], <strike><font color='red'>[SQPHISH]),
+   describing</font></strike> <strong><font color='green'>and [SQPHISH])
+   that describe</font></strong> how the unauthenticated channel can be exploited using
+   social engineering techniques borrowed from phishing.  Unlike
+   traditional phishing attacks, these attacks don't harvest
    credentials.  Instead, they skip the step of collecting credentials
    by persuading users to grant authorization using their Authorization
    Devices.
@@ -275,7 +277,8 @@ Table of Contents
    configuration and optimize the user experience.  These flows are
    often used to add new devices to a network, onboard customers to a
    mobile application, or provision new credentials (e.g.,
-   [OpenID.SIOPV2]).
+   <strike><font color='red'>[OpenID.SIOPV2]).</font></strike>
+   <strong><font color='green'>[OpenID.SIOPv2]).</font></strong>
 
    In these cross-device session transfer flows, the channel between the
    Authorization Device and the Consumption Device is unauthenticated.
@@ -294,8 +297,8 @@ Table of Contents
    This document provides guidance to implementers <strike><font color='red'>(e.g.</font></strike> <strong><font color='green'>(e.g.,</font></strong> system
    designers, architects, product managers, security specialists, fraud
    analysts, and engineers) of cross-device flows to defend against
-   Cross-Device Consent Phishing <strong><font color='green'>(CDCP)</font></strong> and Cross-Device Session
-   Phishing <strong><font color='green'>(CDSP)</font></strong> attacks.  <strong><font color='green'>These include:</font></strong>
+   <strike><font color='red'>Cross-Device Consent Phishing</font></strike> <strong><font color='green'>CDCP</font></strong>
+   and <strike><font color='red'>Cross-Device Session Phishing</font></strike> <strong><font color='green'>CDSP</font></strong> attacks.  <strong><font color='green'>This guidance includes:</font></strong>
 
    1.  Practical mitigations for susceptible protocols (Section 6.1).
 
@@ -315,7 +318,7 @@ Table of Contents
 
    This specification uses the terms "access token", "refresh token",
    "authorization server", "resource server", "authorization endpoint",
-   "authorization request", and "client" defined by <strike><font color='red'>The</font></strike> <strong><font color='green'>"The</font></strong> OAuth 2.0
+   "authorization request", and "client" defined <strike><font color='red'>by The</font></strike> <strong><font color='green'>in "The</font></strong> OAuth 2.0
    Authorization <strike><font color='red'>Framework</font></strike> <strong><font color='green'>Framework"</font></strong> [RFC6749].
 
    This document uses the terms "social engineering" and "phishing" as
@@ -346,12 +349,12 @@ Table of Contents
    5.  Implementers SHOULD include proximity as one of the selected
        mitigations as defined in Section 6.1.1, if possible.
 
-   These best practices apply to the <strike><font color='red'>Device Authorization Grant
-   ([RFC8628])</font></strike> <strong><font color='green'>device authorization grant
-   [RFC8628]</font></strong> as well as other cross-device protocols such as <strike><font color='red'>the
+   These best practices apply to the Device Authorization Grant
+   <strike><font color='red'>([RFC8628])</font></strike>
+   <strong><font color='green'>[RFC8628]</font></strong> as well as other cross-device protocols such as <strike><font color='red'>the
    Client</font></strike> <strong><font color='green'>Client-</font></strong>
    Initiated Backchannel Authentication <strong><font color='green'>(CIBA)</font></strong> [CIBA], Self-Issued
-   OpenID Provider v2 [OpenID.SIOPV2], OpenID for Verifiable
+   OpenID Provider v2 <strike><font color='red'>[OpenID.SIOPV2],</font></strike> <strong><font color='green'>[OpenID.SIOPv2],</font></strong> OpenID for Verifiable
    Presentations [OpenID.VP], the Pre-Authorized Code Flow in
    <strike><font color='red'>([OpenID.VCI])</font></strike>
    <strong><font color='green'>[OpenID.VCI],</font></strong> and other cross-device protocols that rely on the user
@@ -377,7 +380,8 @@ Table of Contents
 
    *  *Cross-Device Session <strike><font color='red'>Transfer*</font></strike> <strong><font color='green'>Transfer:*</font></strong> In the cross-device session
       transfer use case, the user is already authenticated on the first
-      device, before the session is transferred to the second device
+      <strike><font color='red'>device,</font></strike>
+      <strong><font color='green'>device</font></strong> before the session is transferred to the second device
       without requiring the user to re-authenticate as described in
       Section 3.2.
 
@@ -421,22 +425,22 @@ Table of Contents
    authorization request between the Consumption Device and the
    Authorization Device.
 
-   *  *User-Transferred Session Data Pattern:* In the first pattern, the
-      user initiates the authorization process with the authorization
-      server by copying information from the Consumption Device to the
+   *  *User-Transferred Session Data Pattern:* In <strike><font color='red'>the first</font></strike> <strong><font color='green'>this</font></strong> pattern, the user
+      initiates the authorization process with the authorization server
+      by copying information from the Consumption Device to the
       Authorization Device, before authorizing an action.  By
       transferring the data from the Consumption Device to the
       Authorization Device, the user transfers the authorization
       session.  For example, the user may read a code displayed on the
       Consumption Device and enter it on the Authorization Device, or
       they may scan a QR code displayed on the Consumption Device with
-      the Authorization Device.  The <strike><font color='red'>Device Authorization Grant
-      ([RFC8628])</font></strike> <strong><font color='green'>device authorization grant
-      [RFC8628]</font></strong> is an example of a cross-device flow that follows this
+      the Authorization Device.  The Device Authorization Grant
+      <strike><font color='red'>([RFC8628])</font></strike>
+      <strong><font color='green'>[RFC8628]</font></strong> is an example of a cross-device flow that follows this
       pattern.
 
-   *  *Backchannel-Transferred Session Pattern:* In the second pattern,
-      the OAuth client on the Consumption Device is responsible for
+   *  *Backchannel-Transferred Session Pattern:* In <strike><font color='red'>the second</font></strike> <strong><font color='green'>this</font></strong> pattern, the
+      OAuth client on the Consumption Device is responsible for
       transferring the session and initiating authorization on the
       Authorization Device via a backchannel with the Authorization
       Server.  For example, the user may attempt an online purchase on a
@@ -446,8 +450,8 @@ Table of Contents
       [CIBA] is an example of a cross-device flow that <strike><font color='red'>follow</font></strike> <strong><font color='green'>follows</font></strong> this
       pattern.
 
-   *  *User-Transferred Authorization Data Pattern:* In the third
-      pattern, the OAuth client on the Consumption Device triggers the
+   *  *User-Transferred Authorization Data Pattern:* In <strike><font color='red'>the third</font></strike> <strong><font color='green'>this</font></strong> pattern,
+      the OAuth client on the Consumption Device triggers the
       authorization request via a backchannel with the Authorization
       Server.  Authorization data (e.g., a 6-digit authorization code)
       is displayed on the Authorization Device, which the user transfers
@@ -455,7 +459,7 @@ Table of Contents
       example, the user may attempt to access data in an enterprise
       application and receive a 6-digit authorization code on their
       Authorization Device (e.g., <strong><font color='green'>a</font></strong> mobile phone) that they enter on <strong><font color='green'>the</font></strong>
-      Consumption Device.  Note: The use of a 6-digit code is
+      Consumption Device.  <strike><font color='red'>Note: The</font></strike>  <strong><font color='green'>Note that the</font></strong> use of a 6-digit code is
       illustrative and reflects common practice at the time of writing.
       Code length may vary based on usability and risk considerations,
       and specifying the appropriate length is out of scope for this
@@ -463,11 +467,11 @@ Table of Contents
 
 3.1.1.  User-Transferred Session Data Pattern
 
-   The <strike><font color='red'>Device Authorization Grant ([RFC8628])</font></strike> <strong><font color='green'>device authorization grant [RFC8628]</font></strong> is an example of a cross-
+   The Device Authorization Grant <strike><font color='red'>([RFC8628])</font></strike> <strong><font color='green'>[RFC8628]</font></strong> is an example of a cross-
    device flow that relies on the user copying information from the
    Consumption Device to the Authorization Device by either entering
    data manually or scanning a QR code.  Figure 1 shows a typical
-   example of this flow:
+   example of this <strike><font color='red'>flow:</font></strike> <strong><font color='green'>flow.</font></strong>
 
                 +--------------+                       +---------------+
                 |  Consumption |--(B) Request --------&gt;|               |
@@ -544,8 +548,8 @@ Table of Contents
             <strong><font color='green'>Server.</font></strong>
 
    (G)      The Authorization Server validates the QR code or user code
-            and prompts the user to authenticate and accept or decline
-            the authorization request.
+            and prompts the user to authenticate and <strong><font color='green'>either</font></strong> accept or
+            decline the authorization request.
 
    <strike><font color='red'>*</font></strike>
 
@@ -554,7 +558,7 @@ Table of Contents
 
    <strike><font color='red'>*</font></strike>
 
-   (I)      The user is authenticated and authorization is granted to
+   (I)      The user is <strike><font color='red'>authenticated</font></strike> <strong><font color='green'>authenticated,</font></strong> and authorization is granted to
             access the user's resources (there may be several additional
             messages, depending on the authentication protocol, user <strike><font color='red'>interface</font></strike>
             <strong><font color='green'>interface,</font></strong> and other implementation details).
@@ -567,10 +571,12 @@ Table of Contents
 
 3.1.2.  Backchannel-Transferred Session Pattern
 
-   The <strike><font color='red'>Client Initiated</font></strike> <strong><font color='green'>Client-Initiated</font></strong> Backchannel Authentication <strong><font color='green'>(CIBA)</font></strong> [CIBA]
-   transfers the session on the backchannel with the Authorization
-   Server to request authorization on the Authorization Device.
-   Figure 2 shows an example of this <strike><font color='red'>flow.</font></strike> <strong><font color='green'>flow:</font></strong>
+   <strike><font color='red'>The Client Initiated</font></strike>
+
+   <strong><font color='green'>Client-Initiated</font></strong> Backchannel Authentication <strong><font color='green'>(CIBA)</font></strong> [CIBA] transfers
+   the session on the backchannel with the Authorization Server to
+   request authorization on the Authorization Device.  Figure 2 shows an
+   example of this flow.
 
                 +--------------+                       +---------------+
        +-------&gt;|  Consumption |--(B) Backchannel ----&gt;|               |
@@ -612,9 +618,10 @@ Table of Contents
    <strike><font color='red'>*</font></strike>
 
    (B)      The client on the Consumption Device requests user
-            authorization on the backchannel from the Authorization
-            Server and instructs the user to authorize the request on
-            the Authorization Device and waits for a response from the
+            authorization on the backchannel from the Authorization <strike><font color='red'>Server and</font></strike>
+            <strong><font color='green'>Server,</font></strong> instructs the user to authorize the request on the
+            Authorization
+      <strike><font color='red'>Device</font></strike> <strong><font color='green'>Device,</font></strong> and waits for a response from the
             Authorization Server.
 
    <strike><font color='red'>*</font></strike>
@@ -630,7 +637,7 @@ Table of Contents
 
    <strike><font color='red'>*</font></strike>
 
-   (E)      The user is authenticated and authorization is granted to
+   (E)      The user is <strike><font color='red'>authenticated</font></strike> <strong><font color='green'>authenticated,</font></strong> and authorization is granted to
             access the user's resources (there may be several additional
             messages, depending on the authentication protocol, user <strike><font color='red'>interface</font></strike>
             <strong><font color='green'>interface,</font></strong> and other implementation details).
@@ -643,7 +650,7 @@ Table of Contents
 
    The Authorization Server may use a variety of mechanisms to request
    user authorization, including a push notification to a dedicated app
-   on a mobile phone, or sending a text message with a link to an
+   on a mobile <strike><font color='red'>phone,</font></strike> <strong><font color='green'>phone</font></strong> or sending a text message with a link to an
    endpoint where the user can authenticate and authorize an action.
 
 3.1.3.  User-Transferred Authorization Data Pattern
@@ -656,7 +663,7 @@ Table of Contents
    data, the user enters it on the Consumption Device.  The Consumption
    Device sends the authorization data back to the Authorization Server
    for validation before gaining access to the user's resources.
-   Figure 3 shows an example of this <strike><font color='red'>flow.</font></strike> <strong><font color='green'>flow:</font></strong>
+   Figure 3 shows an example of this flow.
 
                 +--------------+                       +---------------+
        +-------&gt;|  Consumption |--(B) Backchannel ----&gt;|               |
@@ -752,7 +759,8 @@ Table of Contents
    configuration and optimize the user experience.  These flows are
    often used to add new devices to a network, onboard customers to a
    mobile application, or provision new credentials (e.g.,
-   [OpenID.SIOPV2]).
+   <strike><font color='red'>[OpenID.SIOPV2]).</font></strike>
+   <strong><font color='green'>[OpenID.SIOPv2]).</font></strong>
 
 3.2.1.  Cross-Device Session Transfer Pattern
 
@@ -770,7 +778,7 @@ Table of Contents
    provisioning new credentials.  The Pre-Authorized Code Flow in
    <strike><font color='red'>([OpenID.VCI])</font></strike>
    <strong><font color='green'>[OpenID.VCI]</font></strong> is an instance of using this pattern to provision a new
-   credential.  Figure 4 below shows a typical <strike><font color='red'>flow.</font></strike> <strong><font color='green'>flow:</font></strong>
+   credential.  Figure 4 <strike><font color='red'>below</font></strike> shows a typical flow.
 
                +---------------+                       +---------------+
      +--------&gt;| Authorization |                       | Authorization |
@@ -1003,15 +1011,14 @@ Table of Contents
 
    A common action in cross-device flows is to present the user with a
    QR code or a user code on the Consumption Device (e.g., smart <strike><font color='red'>TV)</font></strike> <strong><font color='green'>TV),</font></strong>
-   which is then scanned or entered on the Authorization Device (the
+   which is then scanned or entered on the Authorization Device <strike><font color='red'>(the</font></strike> <strong><font color='green'>(e.g.,</font></strong>
    mobile phone).  When the user scans the code or copies the user code,
    they do so without any proof that the QR code or user code is being
    displayed in the place or context intended by the service provider.
    It is up to the user to decide whether they should trust the QR code
    or user code.  In <strike><font color='red'>effect</font></strike> <strong><font color='green'>effect,</font></strong> the user is asked to compensate for the
    absence of an authenticated channel between the Consumption Device
-   (e.g., smart TV) and the Authorization Device (e.g., the mobile
-   phone).
+   (e.g., smart TV) and the Authorization Device (e.g., <strike><font color='red'>the</font></strike> mobile phone).
 
    Attackers exploit this absence of an authenticated channel between
    the two devices by obtaining QR codes or user codes (e.g., by
@@ -1022,8 +1029,7 @@ Table of Contents
    performs the authorization on the mobile device, the attacker who
    initiated the authentication or authorization request obtains access
    to the user's resources.  <strike><font color='red'>The</font></strike>  Figure 5 shows an example of such an
-   <strike><font color='red'>attack.</font></strike>
-   <strong><font color='green'>attack:</font></strong>
+   attack.
 
                 +--------------+                       +---------------+
                 |  Attacker's  |--(B) Request --------&gt;|               |
@@ -1140,7 +1146,7 @@ Table of Contents
 
    <strike><font color='red'>*</font></strike>
 
-   (K)      The user is authenticated with the Authorization Server and
+   (K)      The user is authenticated with the Authorization <strike><font color='red'>Server</font></strike> <strong><font color='green'>Server,</font></strong> and
             authorization is granted to access the user's resources
             (there may be several additional messages, depending on the
             authentication protocol, user <strike><font color='red'>interface</font></strike> <strong><font color='green'>interface,</font></strong> and other
@@ -1159,7 +1165,7 @@ Table of Contents
    In the backchannel-transferred session pattern, the client requests
    the authorization server to authenticate the user and obtain
    authorization for an action.  This may happen as a result of user
-   interaction with the Consumption Device, but may also be triggered
+   interaction with the Consumption <strike><font color='red'>Device,</font></strike> <strong><font color='green'>Device</font></strong> but may also be triggered
    without the <strike><font color='red'>users</font></strike> <strong><font color='green'>user's</font></strong> direct interaction with the Consumption Device,
    resulting in an authorization request presented to the user without
    context of why or who triggered the request.
@@ -1169,7 +1175,7 @@ Table of Contents
    convince them to grant authorization.  The social engineering
    techniques range in sophistication from messages misrepresenting the
    reason for receiving an authorization request, to triggering a large
-   volume of requests at an inconvenient time for the user, in the hope
+   volume of requests at an inconvenient time for the <strike><font color='red'>user,</font></strike> <strong><font color='green'>user</font></strong> in the hope
    that the user will grant authorization to make the requests stop.
    Figure 6 shows an example of such an attack.
 
@@ -1248,7 +1254,7 @@ Table of Contents
 
    <strike><font color='red'>*</font></strike>
 
-   (F)      The user is authenticated and authorization is granted to
+   (F)      The user is <strike><font color='red'>authenticated</font></strike> <strong><font color='green'>authenticated,</font></strong> and authorization is granted to
             access the user's resources (there may be several additional
             messages, depending on the authentication protocol, user <strike><font color='red'>interface</font></strike>
             <strong><font color='green'>interface,</font></strong> and other implementation details).
@@ -1269,8 +1275,8 @@ Table of Contents
    authorization data to the Consumption Device.  The authorization data
    may take different forms, including a numerical value such as a
    6-digit authorization code.  The authorization request may happen as
-   a result of user interaction with the Consumption Device, but may
-   also be triggered without the user's direct interaction with the
+   a result of user interaction with the Consumption <strike><font color='red'>Device,</font></strike> <strong><font color='green'>Device</font></strong> but may also
+   be triggered without the user's direct interaction with the
    Consumption Device.
 
    Attackers exploit the user-transferred authorization data pattern by
@@ -1385,7 +1391,7 @@ Table of Contents
    for steps C and G.  In that <strike><font color='red'>case</font></strike> <strong><font color='green'>case,</font></strong> a user (as opposed to the attacker)
    initiates the flow and is then convinced using social engineering
    techniques into sending the authorization data (e.g., a 6-digit
-   authorization code) to the attacker, instead of using it themselves.
+   authorization code) to the <strike><font color='red'>attacker,</font></strike> <strong><font color='green'>attacker</font></strong> instead of using it themselves.
    The authorization data may be represented as a QR code or text string
    (e.g., 6-digit authorization code).  The attacker then starts the
    flow and uses the authorization data to obtain the privileges that
@@ -1528,7 +1534,7 @@ Table of Contents
    to be added to their account, they authorize the action.  The
    attacker's device is now authorized to access the content and obtains
    an access and refresh token.  The access token allows the attacker to
-   access content and the refresh token allows the attacker to obtain
+   access <strike><font color='red'>content</font></strike> <strong><font color='green'>content,</font></strong> and the refresh token allows the attacker to obtain
    fresh tokens whenever the access token expires.
 
    The attacker scales up the attack by emulating a new smart TV,
@@ -1554,7 +1560,7 @@ Table of Contents
    performing multi-factor authentication.  Throughout the
    authentication experience, the user is interacting with a trusted
    user experience, <strike><font color='red'>re-enforcing</font></strike> <strong><font color='green'>reinforcing</font></strong> the legitimacy of the request.  Once
-   these employees authorized access, the attacker obtains access and
+   these employees <strike><font color='red'>authorized</font></strike> <strong><font color='green'>authorize</font></strong> access, the attacker obtains access and
    refresh tokens from the authorization server and uses <strike><font color='red'>it</font></strike> <strong><font color='green'>them</font></strong> to access
    the users' files, perform lateral attacks to obtain access to other
    <strike><font color='red'>information</font></strike>
@@ -1570,14 +1576,14 @@ Table of Contents
    An attacker copies a QR code from a bicycle locked in a bicycle rack
    in a city, prints it on a <strike><font color='red'>label</font></strike> <strong><font color='green'>label,</font></strong> and places the label on a bicycle at
    the other end of the bicycle rack.  A customer approaches the bicycle
-   that contains the replicated QR code and scans the code and
+   that contains the replicated QR <strike><font color='red'>code and</font></strike> <strong><font color='green'>code,</font></strong> scans the <strike><font color='red'>code</font></strike> <strong><font color='green'>code,</font></strong> and
    authenticates before authorizing payment for renting the bicycle.
    The bicycle rack unlocks the bicycle containing the original QR <strike><font color='red'>code</font></strike> <strong><font color='green'>code,</font></strong>
    and the attacker removes the bicycle before cycling down the <strike><font color='red'>street</font></strike> <strong><font color='green'>street,</font></strong>
    while the customer is left frustrated that the bicycle they were
    trying to use is not being unlocked [NYC.Bike].  The customer
    proceeds to unlock another bicycle and lodges a complaint with the
-   bicycle renting company.
+   bicycle <strike><font color='red'>renting</font></strike> <strong><font color='green'>rental</font></strong> company.
 
 4.3.4.  Example B4: Illicit Transaction Authorization (Backchannel-
         Transferred Session Pattern)
@@ -1639,7 +1645,7 @@ Table of Contents
    present a verifiable credential attesting to a new employee's
    identity.  The attacker obtains a list of potential new employees and
    sends an <strike><font color='red'>e-mail</font></strike> <strong><font color='green'>email</font></strong> informing them that it is time to present proof of
-   their background check or government issued ID.  The new employee
+   their background check or <strike><font color='red'>government issued</font></strike> <strong><font color='green'>government-issued</font></strong> ID.  The new employee
    scans the QR code, invokes their digital <strike><font color='red'>wallet</font></strike> <strong><font color='green'>wallet,</font></strong> and presents their
    credentials.  Once the credentials are presented, the employee's
    account is activated.  The employee portal accessed by the attacker
@@ -1656,7 +1662,7 @@ Table of Contents
    are trying to resolve an application performance issue and ask
    employees to send them the QR code typically used to transfer a
    session.  The employee, eager to assist, initiates the process to
-   transfer a session.  They authenticate and obtain a QR code and then
+   transfer a session.  They <strike><font color='red'>authenticate and</font></strike> <strong><font color='green'>authenticate,</font></strong> obtain a QR <strike><font color='red'>code</font></strike> <strong><font color='green'>code,</font></strong> and then
    send the QR code to the attacker.  The attacker scans the QR code
    with their mobile phone and <strike><font color='red'>access</font></strike> <strong><font color='green'>accesses</font></strong> the <strike><font color='red'>users</font></strike> <strong><font color='green'>user's</font></strong> data and resources.
 
@@ -1687,8 +1693,8 @@ Table of Contents
    administrator.  The attempts are timed to occur while the
    administrator is asleep.  The administrator is woken by the incoming
    requests on their phone, <strike><font color='red'>and,</font></strike> <strong><font color='green'>and</font></strong> in an attempt to stop the notifications,
-   they accidentally approve access and the attacker gains access to the
-   portal.
+   they accidentally approve <strike><font color='red'>access</font></strike> <strong><font color='green'>access,</font></strong> and the attacker gains access to
+   the portal.
 
 4.3.10.  Out of Scope
 
@@ -1709,19 +1715,21 @@ Table of Contents
    typically share the following characteristics:
 
    1.  The attacker can initiate the flow and manipulate the context of
-       an authorization <strike><font color='red'>request.  E.g.,</font></strike> <strong><font color='green'>request (e.g.,</font></strong> the attacker can obtain a QR code
-       or user code, or can request an authentication/authorization
-       decision from the <strike><font color='red'>user.</font></strike> <strong><font color='green'>user).</font></strong>
+       an authorization request.  <strike><font color='red'>E.g.,</font></strike>  <strong><font color='green'>For example,</font></strong> the attacker can obtain a
+       QR code or user code, or <strong><font color='green'>the attacker</font></strong> can request an
+       authentication/authorization decision from the user.
 
    2.  The interaction between the Consumption Device and Authorization
-       Device is <strike><font color='red'>unauthenticated.  I.e.,</font></strike> <strong><font color='green'>unauthenticated (i.e.,</font></strong> it is left to the user to decide
-       if the QR code, user code, or authentication request is being
-       presented in a legitimate <strike><font color='red'>context.</font></strike> <strong><font color='green'>context).</font></strong>
+       Device is unauthenticated.  <strike><font color='red'>I.e.,</font></strike>  <strong><font color='green'>That is,</font></strong> it is left to the user to
+       decide if the QR code, user code, or authentication request is
+       being presented in a legitimate context.
 
-   A number of protocols <strike><font color='red'>that</font></strike> have been <strike><font color='red'>standardized,</font></strike> <strong><font color='green'>standardized</font></strong> or are in the process of
-   being standardized that share these <strike><font color='red'>characteristics</font></strike> <strong><font color='green'>characteristics.  These</font></strong> include:
+   <strike><font color='red'>A number of protocols</font></strike>
 
-   *  *IETF OAuth 2.0 <strike><font color='red'>Device Authorization Grant ([RFC8628]):*</font></strike> <strong><font color='green'>device authorization grant [RFC8628]:*</font></strong> A standard
+   <strong><font color='green'>Protocols</font></strong> that have been <strike><font color='red'>standardized, or</font></strike> <strong><font color='green'>standardized (or</font></strong> are in the process of being <strike><font color='red'>standardized</font></strike>
+   <strong><font color='green'>standardized)</font></strong> that share these characteristics include:
+
+   *  *IETF OAuth 2.0 Device Authorization Grant <strike><font color='red'>([RFC8628]):*</font></strike> <strong><font color='green'>[RFC8628]:*</font></strong> A standard
       to enable authorization on devices with constrained input
       capabilities <strike><font color='red'>(smart</font></strike> <strong><font color='green'>(e.g., smart</font></strong> TVs, printers, <strong><font color='green'>and</font></strong> kiosks).  In this
       protocol, the user code or QR code is displayed on the Consumption
@@ -1743,11 +1751,11 @@ Table of Contents
    *  *OpenID for Verifiable Credential Protocol Suite (Issuance,
       Presentation):* The OpenID for Verifiable Credentials enables
       cross-device scenarios by allowing users to scan QR codes to
-      retrieve credentials <strike><font color='red'>(Issuance -</font></strike> <strong><font color='green'>(i.e., Issuance;</font></strong> see [OpenID.VCI]) or present
-      credentials <strike><font color='red'>(Presentation -</font></strike> <strong><font color='green'>(i.e., Presentation;</font></strong> see [OpenID.VP]).  The QR code is
+      retrieve credentials <strike><font color='red'>(Issuance -</font></strike> <strong><font color='green'>(Issuance;</font></strong> see [OpenID.VCI]) or present
+      credentials <strike><font color='red'>(Presentation -</font></strike> <strong><font color='green'>(Presentation;</font></strong> see [OpenID.VP]).  The QR code is
       presented on a device that initiates the flow.
 
-   *  *Self-Issued OpenID Provider v2 (SIOP V2):* A standard that allows
+   *  *Self-Issued OpenID Provider v2 <strike><font color='red'>(SIOP V2):*</font></strike> <strong><font color='green'>(SIOPv2):*</font></strong> A standard that allows
       <strike><font color='red'>end-user</font></strike>
       <strong><font color='green'>end users</font></strong> to present self-attested or <strike><font color='red'>third party</font></strike> <strong><font color='green'>third-party</font></strong> attested
       attributes when used with OpenID for Verifiable Credential
@@ -1757,9 +1765,9 @@ Table of Contents
    Cross-device protocols SHOULD NOT be used for same-device scenarios.
    If the Consumption Device and Authorization Device are the same
    device, protocols like OpenID Connect Core [OpenID.Core] and OAuth
-   2.0 <strike><font color='red'>Authorization Code Grant</font></strike> <strong><font color='green'>authorization code grant</font></strong> as defined in [RFC6749] are more
+   2.0 Authorization Code Grant as defined in [RFC6749] are more
    appropriate.  If a protocol supports both same-device and cross-
-   device modes (e.g., [OpenID.SIOPV2] and [OpenID.VP]), the cross-
+   device modes (e.g., <strike><font color='red'>[OpenID.SIOPV2]</font></strike> <strong><font color='green'>[OpenID.SIOPv2]</font></strong> and [OpenID.VP]), the cross-
    device mode SHOULD NOT be used for same-device scenarios.  An
    authorization server MAY choose to block cross-device protocols used
    in same-device scenarios if it detects that the same device is used.
@@ -1830,11 +1838,11 @@ Table of Contents
    profile of these protocols can be improved through practical
    mitigations that provide defense in depth that either:
 
-   1.  <strike><font color='red'>Prevents</font></strike>  <strong><font color='green'>Prevent</font></strong> the attack from being initiated.
+   1.  Prevents the attack from being initiated.
 
-   2.  <strike><font color='red'>Disrupts</font></strike>  <strong><font color='green'>Disrupt</font></strong> the attack once it is initiated.
+   2.  Disrupts the attack once it is initiated.
 
-   3.  <strike><font color='red'>Remediates</font></strike>  <strong><font color='green'>Remediate</font></strong> or <strike><font color='red'>reduces</font></strike> <strong><font color='green'>reduce</font></strong> the impact if the attack succeeds.
+   3.  Remediates or reduces the impact if the attack succeeds.
 
    It is RECOMMENDED that one or more of the mitigations be applied when
    implementing a cross-device flow.  Each mitigation, despite
@@ -1849,24 +1857,24 @@ Table of Contents
    Authorization Device allows attackers to obtain a QR code or user
    code in one location and display it in another location.
    Consequently, proximity-enforced cross-device flows are more
-   resistant to Cross-Device Consent Phishing <strong><font color='green'>(CDCP)</font></strong> attacks than <strike><font color='red'>proximity-
-   less</font></strike>
-   <strong><font color='green'>proximity-less</font></strong> cross-device flows.  Establishing proximity between
-   the location of the Consumption Device and the Authorization Device
-   limits an attacker's ability to launch attacks by sending <strike><font color='red'>the</font></strike> user <strong><font color='green'>codes</font></strong>
-   or QR codes to large numbers of users that are geographically
-   distributed.  Note that the authorization server typically cannot
-   directly determine whether the Consumption Device and Authorization
-   Device are physically close to each other.  Instead, it must rely on
-   the surrounding systems, protocols in use, device capabilities, or
-   information it obtains from other systems to establish or verify
-   proximity.  The authorization server can validate information it
-   receives, but it cannot independently measure or enforce proximity on
-   its own.  There are a number of ways to establish proximity, each
-   with its own implementation benefits and limitations:
+   resistant to <strike><font color='red'>Cross-Device Consent Phishing</font></strike> <strong><font color='green'>CDCP</font></strong> attacks than <strike><font color='red'>proximity-
+   less</font></strike> <strong><font color='green'>proximity-less</font></strong> cross-device flows.
+   Establishing proximity between the location of the Consumption Device
+   and the Authorization Device limits an attacker's ability to launch
+   attacks by sending <strike><font color='red'>the</font></strike> user <strong><font color='green'>codes</font></strong> or QR codes to large numbers of users
+   that are geographically distributed.  Note that the authorization
+   server typically cannot directly determine whether the Consumption
+   Device and Authorization Device are physically close to each other.
+   Instead, it must rely on the surrounding systems, protocols in use,
+   device capabilities, or information it obtains from other systems to
+   establish or verify proximity.  The authorization server can validate
+   information it receives, but it cannot independently measure or
+   enforce proximity on its own.  There are a number of ways to
+   establish proximity, each with its own implementation benefits and
+   limitations:
 
-   *  Physical connectivity: This is a good indicator of proximity, but
-      requires specific ports, <strike><font color='red'>cables</font></strike> <strong><font color='green'>cables,</font></strong> and hardware and may be
+   *  Physical connectivity: This is a good indicator of <strike><font color='red'>proximity,</font></strike> <strong><font color='green'>proximity</font></strong> but
+      requires specific ports, <strike><font color='red'>cables and hardware</font></strike> <strong><font color='green'>cables,</font></strong> and <strong><font color='green'>hardware, which</font></strong> may be
       challenging from a user experience perspective or may not be
       possible in certain settings (e.g., when USB ports are blocked or
       removed for security purposes).  Physical connectivity may be
@@ -1882,7 +1890,7 @@ Table of Contents
       prove proximity between the two devices.  NFC technology is widely
       deployed in mobile phones as part of payment solutions, but NFC
       readers are less widely deployed.  BLE presents another
-      alternative for establishing proximity, but may present user
+      alternative for establishing <strike><font color='red'>proximity,</font></strike> <strong><font color='green'>proximity</font></strong> but may present user
       experience challenges when setting up.  UWB standards such as IEEE
       802.15.4 and the IEEE 802.15.4z-2020 Amendment 1 enable secure
       ranging between devices and allow devices to establish proximity
@@ -1913,7 +1921,7 @@ Table of Contents
       <strike><font color='red'>co-ordinates</font></strike>
       <strong><font color='green'>coordinates</font></strong> or geolocation lookup of IP addresses and comparing
       proximity.  Geolocation based on GNSS may vary in accuracy
-      depending on the user's location, and when mapped to national or
+      depending on the user's <strike><font color='red'>location, and</font></strike> <strong><font color='green'>location and,</font></strong> when mapped to national or
       regional <strike><font color='red'>boundaries</font></strike> <strong><font color='green'>boundaries,</font></strong> may show a Consumption and Authorization
       Device in different locations if those devices are close to a
       border.  Since relative position is more important than absolute
@@ -1971,8 +1979,7 @@ Table of Contents
 6.1.2.  <strike><font color='red'>Short-Lived/Timebound</font></strike>  <strong><font color='green'>Short-Lived/Time-Bound</font></strong> QR or User Codes
 
    The impact of an attack can be reduced by making QR or user codes
-   <strike><font color='red'>short-lived.</font></strike>
-   <strong><font color='green'>short lived.</font></strong>  If an attacker obtains a short-lived code, the duration
+   short-lived.  If an attacker obtains a short-lived code, the duration
    during which the unauthenticated channel can be exploited is reduced,
    potentially increasing the cost of a successful attack.  This
    mitigation can be implemented on the authorization server without
@@ -1982,27 +1989,26 @@ Table of Contents
    can be valid due to network latency and user experience limitations
    (time taken to enter a code, time to complete authentication, or time
    needed to re-enter codes or re-authenticate due to an error).  More
-   sophisticated Cross-Device Consent Phishing <strong><font color='green'>(CDCP)</font></strong> attacks counter
-   the effectiveness of short-lived codes by convincing a user to
-   respond to a phishing <strike><font color='red'>e-mail</font></strike> <strong><font color='green'>email</font></strong> and only request the QR or user code once
-   the user clicks on the link in the phishing <strike><font color='red'>e-mail</font></strike> <strong><font color='green'>email</font></strong> [SQPHISH].
+   sophisticated <strike><font color='red'>Cross-Device Consent Phishing</font></strike> <strong><font color='green'>CDCP</font></strong> attacks counter the effectiveness of short-lived
+   codes by convincing a user to respond to a phishing <strike><font color='red'>e-mail</font></strike> <strong><font color='green'>email</font></strong> and only
+   request the QR or user code once the user clicks on the link in the
+   phishing <strike><font color='red'>e-mail</font></strike> <strong><font color='green'>email</font></strong> [SQPHISH].
 
 6.1.3.  One-Time or <strike><font color='red'>Limited Use</font></strike> <strong><font color='green'>Limited-Use</font></strong> Codes
 
-   By enforcing one-time use or limited use of user <strong><font color='green'>codes</font></strong> or QR codes,
-   the authorization server can limit the impact of attacks where the
-   same user code or QR code is sent to multiple victims.  One-time use
-   may be achieved by including a nonce or <strike><font color='red'>date-stamp</font></strike> <strong><font color='green'>date stamp</font></strong> in the user code
-   or QR
-   <strike><font color='red'>code</font></strike> <strong><font color='green'>code,</font></strong> which is validated by the authorization server when the
-   user scans the QR code against a list of previously issued codes.
-   This mitigation can be implemented on the authorization server
-   without changes to other system components.
+   By enforcing one-time use or limited use of user or QR codes, the
+   authorization server can limit the impact of attacks where the same
+   user code or QR code is sent to multiple victims.  One-time use may
+   be achieved by including a nonce or <strike><font color='red'>date-stamp</font></strike> <strong><font color='green'>date stamp</font></strong> in the user code or QR
+   <strike><font color='red'>code</font></strike>
+   <strong><font color='green'>code,</font></strong> which is validated by the authorization server when the user
+   scans the QR code against a list of previously issued codes.  This
+   mitigation can be implemented on the authorization server without
+   changes to other system components.
 
    *Limitations:* Enforcing one-time use may be difficult in large
    globally distributed systems with low latency requirements, in which
-   <strike><font color='red'>case</font></strike>
-   <strong><font color='green'>case,</font></strong> short-lived tokens may be more practical.  One-time use codes
+   case short-lived tokens may be more practical.  One-time use codes
    may also have an impact on the user experience.  For example, a user
    may enter a code, but their session may be interrupted before the
    access request is completed.  If the code is a one-time use code,
@@ -2013,7 +2019,7 @@ Table of Contents
 
 6.1.4.  Unique Codes
 
-   By issuing unique user <strong><font color='green'>codes</font></strong> or QR codes, an authorization server can
+   By issuing unique user or QR codes, an authorization server can
    detect if the same codes are being repeatedly submitted.  This may be
    interpreted as anomalous <strike><font color='red'>behavior</font></strike> <strong><font color='green'>behavior,</font></strong> and the authorization server MAY
    choose to decline issuing access and refresh tokens if it detects the
@@ -2038,13 +2044,13 @@ Table of Contents
    <strong><font color='green'>(email,</font></strong> text messaging, instant <strike><font color='red'>messaging</font></strike> <strong><font color='green'>messaging,</font></strong> or other communication
    mechanisms).  By deploying content filtering (e.g., anti-spam
    filter), these messages can be blocked and prevented from reaching
-   the <strike><font color='red'>end-users.</font></strike> <strong><font color='green'>end users.</font></strong>  It may be possible to <strike><font color='red'>fine-tune</font></strike> <strong><font color='green'>fine tune</font></strong> content filtering
+   the <strike><font color='red'>end-users.</font></strike> <strong><font color='green'>end users.</font></strong>  It may be possible to fine-tune <strike><font color='red'>content filtering</font></strike> <strong><font color='green'>content-filtering</font></strong>
    solutions to detect artifacts like QR codes or user codes that are
    included in a message that is sent to multiple recipients in the
    expectation that at least one of the recipients will be convinced by
    the message and grant authorization to access restricted resources.
 
-   *Limitations:* Some scenarios may require legitimate re-transmission
+   *Limitations:* Some scenarios may require legitimate <strike><font color='red'>re-transmission</font></strike> <strong><font color='green'>retransmission</font></strong>
    of user, <strike><font color='red'>QR</font></strike> <strong><font color='green'>QR,</font></strong> and authorization data (e.g., retries).  To prevent the
    disruption of legitimate scenarios, content filters may use a
    threshold and allow a limited number of messages with the same QR or
@@ -2054,13 +2060,14 @@ Table of Contents
    text messaging, instant <strike><font color='red'>messaging</font></strike> <strong><font color='green'>messaging,</font></strong> or other communication
    mechanisms), making it harder to detect or interrupt attacks that are
    executed over multiple channels, unless <strike><font color='red'>here</font></strike> <strong><font color='green'>there</font></strong> is a high degree of
-   integration between content filtering systems.
+   integration between <strike><font color='red'>content filtering</font></strike> <strong><font color='green'>content-filtering</font></strong> systems.
 
 6.1.6.  Detect and Remediate
 
    The authorization server may be able to detect misuse of the codes
    due to repeated use as described in Section 6.1.4, as an input from a
-   content filtering engine as described in Section 6.1.5, or through
+   <strike><font color='red'>content filtering</font></strike>
+   <strong><font color='green'>content-filtering</font></strong> engine as described in Section 6.1.5, or through
    other mechanisms such as reports from <strike><font color='red'>end-users.</font></strike> <strong><font color='green'>end users.</font></strong>  If an authorization
    server determines that a user code or QR code is being used in an
    <strike><font color='red'>attack</font></strike>
@@ -2070,8 +2077,7 @@ Table of Contents
    resource servers to stop accepting these tokens or to terminate
    existing sessions associated with these tokens using Continuous
    Access Evaluation Protocol (CAEP) messages [CAEP] using the Shared
-   Signals Framework (SSF) [SSF] framework or an equivalent notification
-   system.
+   Signals Framework (SSF) [SSF] <strike><font color='red'>framework</font></strike> or an equivalent notification system.
 
    *Limitations:* Detection and remediation <strike><font color='red'>requires</font></strike> <strong><font color='green'>require</font></strong> that resource
    servers are integrated with security eventing systems or token
@@ -2154,8 +2160,8 @@ Table of Contents
    Consumption Device.  This mitigation can be implemented on the
    authorization server without changes to other system components.
 
-   *Limitations:* Limiting scopes reduces the impact of a compromise,
-   but does not avoid it.  It SHOULD be used in conjunction with other
+   *Limitations:* Limiting scopes reduces the impact of a <strike><font color='red'>compromise,</font></strike> <strong><font color='green'>compromise</font></strong> but
+   does not avoid it.  It SHOULD be used in conjunction with other
    mitigations described in this document.
 
 6.1.10.  Short-Lived Tokens
@@ -2165,7 +2171,7 @@ Table of Contents
    depending on the user's location, the resources they are trying to
    <strike><font color='red'>access</font></strike>
    <strong><font color='green'>access,</font></strong> or whether they are using a trusted device.  Short-lived
-   tokens do not prevent or disrupt the attack, but serve as a remedial
+   tokens do not prevent or disrupt the <strike><font color='red'>attack,</font></strike> <strong><font color='green'>attack</font></strong> but serve as a remedial
    mechanism in case the attack succeeded.  This mitigation can be
    implemented on the authorization server without changes to other
    system components.
@@ -2216,7 +2222,7 @@ Table of Contents
    for executing the attack and profiting from exfiltrating tokens.
    Although a software proof-of-possession key is better than no proof-
    of-possession key, an attacker may still exfiltrate the software key.
-   Hardware keys are harder to exfiltrate, but come with additional
+   Hardware keys are harder to <strike><font color='red'>exfiltrate,</font></strike> <strong><font color='green'>exfiltrate</font></strong> but come with additional
    implementation complexity.  An attacker that controls the Consumption
    Device may still be able to <strike><font color='red'>excercise</font></strike> <strong><font color='green'>exercise</font></strong> the key, even if it is in
    hardware.  Consequently, the main protection derived from sender-
@@ -2258,11 +2264,11 @@ Table of Contents
    protocols were initiated and communicate this clearly to the user
    when they are asked to authorize, <strike><font color='red'>authenticate</font></strike> <strong><font color='green'>authenticate,</font></strong> or present a
    credential.  In preserving the context, it should be clear to the
-   user who invoked the flow, why it was <strike><font color='red'>invoked</font></strike> <strong><font color='green'>invoked,</font></strong> and what the
-   consequence of completing the authorization, <strike><font color='red'>authentication</font></strike> <strong><font color='green'>authentication,</font></strong> or
-   credential presentation is.  The user experience SHOULD reinforce the
-   message that unless the user initiated the authorization request, or
-   was expecting it, they should decline the request.
+   user who invoked the <strike><font color='red'>flow,</font></strike> <strong><font color='green'>flow</font></strong> why it was invoked and what the consequence
+   of completing the authorization, <strike><font color='red'>authentication</font></strike> <strong><font color='green'>authentication,</font></strong> or credential
+   presentation is.  The user experience SHOULD reinforce the message
+   that unless the user initiated the authorization request, or was
+   expecting it, they should decline the request.
 
    This information MAY be communicated graphically or in a simple
    message (e.g., "It looks like you are trying to access your files on
@@ -2300,7 +2306,7 @@ Table of Contents
    device flow, the server can prevent an attacker from initiating a
    cross-device flow and obtaining QR codes or user codes.  For example,
    a banking application may initiate a cross-device authorization
-   request using the <strike><font color='red'>Backchannel-Transferred Session</font></strike> <strong><font color='green'>backchannel-transferred session</font></strong> pattern only after
+   request using the Backchannel-Transferred Session pattern only after
    the user is already authenticated and attempts a high-value
    transaction.  This prevents the attacker from initiating a cross-
    device authorization <strike><font color='red'>request,</font></strike> <strong><font color='green'>request and</font></strong> obtaining a QR code or a user code
@@ -2315,9 +2321,8 @@ Table of Contents
    Authenticating on the Consumption Device before starting a cross-
    device flow does not prevent the attacks described in <strike><font color='red'>Section</font></strike> <strong><font color='green'>Sections</font></strong> 4.3.5
    and <strike><font color='red'>Section 4.3.7</font></strike> <strong><font color='green'>4.3.7,</font></strong> and it is RECOMMENDED that additional mitigations
-   described in this document <strike><font color='red'>is</font></strike> <strong><font color='green'>are</font></strong> used if the cross-device flows are
-   used in scenarios such as <strike><font color='red'>Section</font></strike> <strong><font color='green'>those described in Sections</font></strong> 3.3.5 and <strike><font color='red'>Section</font></strike>
-   3.3.7.
+   described in this document <strike><font color='red'>is</font></strike> <strong><font color='green'>be</font></strong> used if the cross-device flows are used
+   in scenarios such as <strike><font color='red'>Section</font></strike> <strong><font color='green'>those described in Sections</font></strong> 3.3.5 and <strike><font color='red'>Section</font></strike> 3.3.7.
 
 6.1.16.  Request Initiation Verification
 
@@ -2343,7 +2348,7 @@ Table of Contents
 
 6.1.17.  Request Binding with Out-of-Band Data
 
-   In the <strike><font color='red'>User-Transferred Session Data Pattern,</font></strike> <strong><font color='green'>user-transferred session data pattern,</font></strong> users MAY enter out-of-
+   In the User-Transferred Session Data Pattern, users MAY enter out-of-
    band information on the Consumption Device to start the authorization
    process.  The out-of-band data entered by the user MAY then be
    included in the QR <strike><font color='red'>code</font></strike> <strong><font color='green'>code,</font></strong> which is displayed on the Consumption
@@ -2508,7 +2513,7 @@ Table of Contents
 
 6.2.2.5.  When to Use
 
-   Use CIBA instead of <strike><font color='red'>Device Authorization Grant</font></strike> <strong><font color='green'>the device authorization grant</font></strong> if it is possible
+   Use CIBA instead of <strong><font color='green'>the</font></strong> Device Authorization Grant if it is possible
    for the Consumption Device to obtain a user identifier on the
    Consumption Device (e.g., through an input or selection mechanism)
    and if the Authorization Server can trigger an authorization on the
@@ -2570,37 +2575,36 @@ Table of Contents
 6.2.3.5.  When to Use
 
    FIDO2/WebAuthn SHOULD be used for cross-device authentication
-   scenarios whenever the devices are capable of doing <strike><font color='red'>so</font></strike> <strong><font color='green'>so,</font></strong> and a
-   suitable FIDO credential is not available on the Consumption Device.
-   It MAY be used as an authentication method with the <strike><font color='red'>Authorization Code Grant</font></strike> <strong><font color='green'>authorization
-   code grant</font></strong> [RFC6749] and <strike><font color='red'>PKCE</font></strike> <strong><font color='green'>Proof Key for Code Exchange (PKCE)</font></strong>
-   [RFC7636], to grant authorization to a Consumption Device (e.g., <strong><font color='green'>a</font></strong>
-   smart TV or interactive whiteboard) using a device serving as the
-   FIDO authenticator <strike><font color='red'>(e.g.</font></strike> <strong><font color='green'>(e.g.,</font></strong> a mobile phone) for authentication.  This
-   combination of FIDO2/WebAuthn and <strike><font color='red'>Authorization
-   Code Flow</font></strike> <strong><font color='green'>authorization code flow</font></strong> with PKCE
+   scenarios whenever the devices are capable of doing so and a suitable
+   FIDO credential is not available on the Consumption Device.  It MAY
+   be used as an authentication method with the Authorization Code Grant
+   [RFC6749] and <strike><font color='red'>PKCE</font></strike> <strong><font color='green'>Proof Key for Code Exchange (PKCE)</font></strong> [RFC7636], to grant
+   authorization to a Consumption Device (e.g., <strong><font color='green'>a</font></strong> smart TV or
+   interactive whiteboard) using a device serving as the FIDO
+   authenticator <strike><font color='red'>(e.g.</font></strike> <strong><font color='green'>(e.g.,</font></strong> a mobile phone) for authentication.  This
+   combination of FIDO2/WebAuthn and Authorization Code Flow with PKCE
    enables <strike><font color='red'>cross device</font></strike> <strong><font color='green'>cross-device</font></strong> authorization flows, without the risks posed by
-   the <strike><font color='red'>Device Authorization Grant</font></strike> <strong><font color='green'>device authorization grant</font></strong> [RFC8628].
+   the Device Authorization Grant [RFC8628].
 
 6.2.4.  Protocol Selection Summary
 
-   The FIDO Cross-Device Authentication (CDA) flow provides the best
-   protection against attacks on the unauthenticated channel for <strike><font color='red'>cross</font></strike> <strong><font color='green'>cross-</font></strong>
-   device flows.  It can be combined with OAuth 2.0 and OpenID Connect
-   protocols for standards-based authorization and authentication flows.
-   If FIDO2/WebAuthn support is not available, <strike><font color='red'>Client Initiated</font></strike> <strong><font color='green'>Client-Initiated</font></strong>
-   Backchannel Authentication (CIBA) provides an alternative, provided
-   that there is a channel through which the authorization server can
-   contact the end user.  Examples of such a channel include device push
-   notifications, <strike><font color='red'>e-mail</font></strike> <strong><font color='green'>email,</font></strong> or text messages <strike><font color='red'>which</font></strike> <strong><font color='green'>that</font></strong> the user can access from
-   their device.  If CIBA is used, additional mitigations to enforce
-   proximity and initiate transactions from trusted devices or trusted
-   networks SHOULD be considered.  The OAuth 2.0 <strike><font color='red'>Device Authorization
-   Grant</font></strike> <strong><font color='green'>device authorization
-   grant</font></strong> provides the most flexibility and has the lowest requirements
-   on devices used, but it is RECOMMENDED that it is only used when
-   additional mitigations are deployed to prevent attacks that exploit
-   the unauthenticated channel between devices.
+   The FIDO <strike><font color='red'>Cross-Device Authentication (CDA)</font></strike> <strong><font color='green'>CDA</font></strong> flow provides the best protection against attacks on the
+   unauthenticated channel for <strike><font color='red'>cross
+   device</font></strike> <strong><font color='green'>cross-device</font></strong> flows.  It can be combined
+   with OAuth 2.0 and OpenID Connect protocols for standards-based
+   authorization and authentication flows.  If FIDO2/WebAuthn support is
+   not available, <strike><font color='red'>Client Initiated</font></strike> <strong><font color='green'>Client-Initiated</font></strong> Backchannel Authentication (CIBA)
+   provides an alternative, provided that there is a channel through
+   which the authorization server can contact the end user.  Examples of
+   such a channel include device push notifications, <strike><font color='red'>e-mail</font></strike> <strong><font color='green'>email,</font></strong> or text
+   messages <strike><font color='red'>which</font></strike> <strong><font color='green'>that</font></strong> the user can access from their device.  If CIBA is
+   used, additional mitigations to enforce proximity and initiate
+   transactions from trusted devices or trusted networks SHOULD be
+   considered.  The OAuth 2.0 Device Authorization Grant provides the
+   most flexibility and has the lowest requirements on devices used, but
+   it is RECOMMENDED that it <strike><font color='red'>is</font></strike> only <strong><font color='green'>be</font></strong> used when additional mitigations
+   are deployed to prevent attacks that exploit the unauthenticated
+   channel between devices.
 
 6.3.  Foundational Pillars
 
@@ -2648,22 +2652,22 @@ Table of Contents
    of cross-device flows:
 
    *  In "Formal analysis of self-issued OpenID providers" [Bauer2022],
-      the protocol of [OpenID.SIOPV2] was analyzed using the Web
+      the protocol of <strike><font color='red'>[OpenID.SIOPV2]</font></strike> <strong><font color='green'>[OpenID.SIOPv2]</font></strong> was analyzed using the Web
       Infrastructure Model (WIM).  The WIM is specifically designed for
       the analysis of web authentication and authorization protocols.
       While it is a manual (pen-and-paper) model, it captures details of
       browsers and web interactions to a degree that is hard to match in
       automated models.  In previous works, previously unknown flaws in
       OAuth, OpenID Connect, and FAPI were discovered using the WIM.  In
-      the analysis of a cross-device <strike><font color='red'>SIOP V2</font></strike> <strong><font color='green'>Self-Issued OpenID Provider v2
-      (SIOP V2)</font></strong> flow in [Bauer2022], the request replay attack already
-      described in Section 13.3 of [OpenID.SIOPV2] was confirmed in the
-      model.  A mitigation was implemented based on a so-called <strike><font color='red'>Cross-Device</font></strike> <strong><font color='green'>Cross-
-      Device</font></strong> Stub, essentially a component that serves to link the two
-      devices before the protocol flow starts.  This can be seen as an
-      implementation of a trusted device relationship as described in
-      Section 6.1.7.  The mitigation was shown to be effective in the
-      model.
+      the analysis of a cross-device <strike><font color='red'>SIOP V2</font></strike> <strong><font color='green'>SIOPv2</font></strong> flow in [Bauer2022], the
+      request replay attack already described in Section 13.3 of
+      <strike><font color='red'>[OpenID.SIOPV2]</font></strike>
+      <strong><font color='green'>[OpenID.SIOPv2]</font></strong> was confirmed in the model.  A mitigation was
+      implemented based on a so-called Cross-Device Stub, essentially a
+      component that serves to link the two devices before the protocol
+      flow starts.  This can be seen as an implementation of a trusted
+      device relationship as described in Section 6.1.7.  The mitigation
+      was shown to be effective in the model.
 
    *  In "Security analysis of the Grant Negotiation and Authorization
       Protocol" [Helmschmidt2022], an analysis of a draft of the Grant
@@ -2679,12 +2683,12 @@ Table of Contents
       Formal and Risk Analysis" [MPRCS2020], Pernpruner et al. formally
       analyzed an authentication protocol relying on push notifications
       delivered to an out-of-band device to approve the authentication
-      attempt on the primary device <strike><font color='red'>(Backchannel-Transferred Session
-      Pattern,</font></strike> <strong><font color='green'>(see the backchannel-transferred
-      session pattern in</font></strong> Section 3.1.2).  The analysis was performed
-      using the specification language ASLan++ and the model checker
-      SATMC.  According to the results of the analysis, they identified
-      and defined the category of <strike><font color='red'>_implicit attacks_,</font></strike> <strong><font color='green'>"implicit attacks",</font></strong> which manage to
+      attempt on the primary device <strike><font color='red'>(Backchannel-Transferred</font></strike> <strong><font color='green'>(the Backchannel-Transferred</font></strong> Session
+      <strike><font color='red'>Pattern,</font></strike>
+      <strong><font color='green'>Pattern in</font></strong> Section 3.1.2).  The analysis was performed using the
+      specification language ASLan++ and the model checker SATMC.
+      According to the results of the analysis, they identified and
+      defined the category of <strike><font color='red'>_implicit attacks_,</font></strike> <strong><font color='green'>"implicit attacks",</font></strong> which manage to
       deceive users into approving a malicious authentication attempt
       through social engineering techniques, thus not compromising all
       the authentication factors involved; these attacks are aligned
@@ -2697,13 +2701,13 @@ Table of Contents
       levels of granularity.  They leveraged their methodology to
       formally analyze a protocol relying on a QR code that has to be
       scanned on a secondary device to approve the authentication
-      attempt on the primary device <strike><font color='red'>(User-Transferred Session Data
-      Pattern,</font></strike> <strong><font color='green'>(see the user-transferred session
-      data pattern in</font></strong> Section 3.1.1).  Given the results of the
-      analysis, they proposed some practical mitigations either to
-      prevent or reduce the risk of successful attacks, such as those
-      described in
-      <strike><font color='red'>Section</font></strike> <strong><font color='green'>Sections</font></strong> 6.1.13, <strike><font color='red'>Section 6.1.16</font></strike> <strong><font color='green'>6.1.16,</font></strong> and <strike><font color='red'>Section</font></strike> 6.1.17.
+      attempt on the primary device <strike><font color='red'>(User-Transferred</font></strike> <strong><font color='green'>(the User-Transferred</font></strong> Session Data
+      <strike><font color='red'>Pattern,</font></strike>
+      <strong><font color='green'>Pattern in</font></strong> Section 3.1.1).  Given the results of the analysis,
+      they proposed some practical mitigations <strike><font color='red'>either</font></strike> to <strong><font color='green'>either</font></strong> prevent or
+      reduce the risk of successful attacks, such as those described in
+      <strike><font color='red'>Section</font></strike>
+      <strong><font color='green'>Sections</font></strong> 6.1.13, <strike><font color='red'>Section 6.1.16</font></strike> <strong><font color='green'>6.1.16,</font></strong> and <strike><font color='red'>Section</font></strike> 6.1.17.
 
 7.  Security Considerations
 
@@ -2872,11 +2876,13 @@ Table of Contents
               scammers who have cracked the QR code", <strong><font color='green'>New York Post,</font></strong>
               August 2021,
               <strike><font color='red'>&lt;https://nypost.com/2021/08/07/citi-bikes-being-swiped-by-
-              joyriding-scammers-who-have-cracked-the-qr-code/&gt;.</font></strike> <strong><font color='green'>&lt;https://nypost.com/2021/08/07/citi-bikes-
-              being-swiped-by-joyriding-scammers-who-have-cracked-the-
-              qr-code/&gt;.</font></strong>
+              joyriding-scammers-who-have-cracked-the-qr-code/&gt;.
 
-   [OpenID.SIOPV2]
+   [OpenID.SIOPV2]</font></strike> <strong><font color='green'>&lt;https://nypost.com/2021/08/07/citi-bikes-
+              being-swiped-by-joyriding-scammers-who-have-cracked-the-
+              qr-code/&gt;.
+
+   [OpenID.SIOPv2]</font></strong>
               Yasuda, K., Jones, <strike><font color='red'>M. B.,</font></strike> <strong><font color='green'>M.,</font></strong> and T. Lodderstedt, "Self-Issued
               OpenID Provider v2 - <strike><font color='red'>Draft</font></strike> <strong><font color='green'>draft</font></strong> 13", November <strike><font color='red'>2022,</font></strike> <strong><font color='green'>2023,</font></strong>
               &lt;https://openid.net/specs/openid-connect-self-issued-
