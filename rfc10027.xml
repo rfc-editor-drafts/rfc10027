@@ -104,16 +104,14 @@ but rather to persuade the user to grant authorization.</t>
       <section anchor="cross-device-session-transfer">
         <name>Cross-Device Session Transfer</name>
         <t>Session transfer flows enable a user to transfer access to a service or network from a device on which the user is already authenticated to a second device such as a mobile phone. In these flows, the user is authenticated and then authorizes the session transfer on one device, referred to as the Authorization Device (e.g., a personal computer, web portal, or application), and transfers the session to the device where they will continue to consume the session, referred to as the Consumption Device (e.g., a mobile phone or portable device).</t>
-<!-- [rfced] In the text below, may we clarify "scanned by"?
+<!-- [rfced] In the text below, how may we clarify "and scanned by"?
 
 Original:
-
    This flow may be streamlined by rendering the
    session transfer code as a QR code on the Authorization Device and
    scanned by the Consumption Device.
 
 Perhaps A:
-
    This flow may be streamlined by rendering the
    session transfer code as a QR code on the Authorization Device and
    scanning it with the Consumption Device.
@@ -125,6 +123,24 @@ Perhaps B:
 -->
 
         <t>The session may be transferred by showing the user a session transfer code on the Authorization Device, which is then entered on the Consumption Device. This flow may be streamlined by rendering the session transfer code as a QR code on the Authorization Device and scanned by the Consumption Device.</t>
+
+<!-- [rfced] How may we clarify "(e.g., [OpenID.SIOPV2])" here? Is the intent
+"(e.g., as described in [OpenID.SIOPV2])"?
+
+Original:
+   These flows are
+   often used to add new devices to a network, onboard customers to a
+   mobile application, or provision new credentials (e.g.,
+   [OpenID.SIOPV2]).
+
+Perhaps:
+   These flows are
+   often used to add new devices to a network, onboard customers to a
+   mobile application, or provision new credentials (e.g., as described in
+   [OpenID.SIOPV2]).
+-->
+
+
         <t>The session transfer preserves state information, including authentication state, at the second device to avoid additional configuration and optimize the user experience. These flows are often used to add new devices to a network, onboard customers to a mobile application, or provision new credentials (e.g., <xref target="OpenID.SIOPv2"/>).</t>
         <t>In these cross-device session transfer flows, the channel between the Authorization Device and the Consumption Device is unauthenticated.</t>
         <t>Cross-Device Session Phishing (CDSP) attacks exploit the unauthenticated channel
@@ -159,7 +175,8 @@ These attacks borrow techniques from traditional phishing attacks, but instead o
     shown here.
         </t>
 
-<!-- [rfced] The term "authorization endpoint" is listed in Section 1.4 but is not used elsewhere in the document. Should it be removed from Section 1.4?
+<!-- [rfced] The term "authorization endpoint" is listed in Section 1.4 but is
+not used elsewhere in the document. Should it be removed from Section 1.4?
 -->
 
 
@@ -543,7 +560,7 @@ Authorization|              |                       |               |
 <!-- [rfced] We note empty parentheses in the section title below. We have
 removed them, but please review and let us know if you would like to add any
 text to them. We see that other subsections of Section 3.3 have parentheses that
-indicate the pattern.
+indicate the applicable pattern.
 
 Original:
 
@@ -641,7 +658,7 @@ Authorization|              |                       |               |
         <section anchor="backchannel-transferred-session-pattern-exploits">
           <name>Backchannel-Transferred Session Pattern Exploits</name>
           <t>In the backchannel-transferred session pattern, the client requests the authorization server to authenticate the user and obtain authorization for an action. This may happen as a result of user interaction with the Consumption Device but may also be triggered without the user's direct interaction with the Consumption Device, resulting in an authorization request presented to the user without context of why or who triggered the request.</t>
-          <t>Attackers exploit this lack of context by using social engineering techniques to prime the user for an authorization request and thereby convince them to grant authorization. The social engineering techniques range in sophistication from messages misrepresenting the reason for receiving an authorization request, to triggering a large volume of requests at an inconvenient time for the user in the hope that the user will grant authorization to make the requests stop. <xref target="fig6"/> shows an example of such an attack.</t>
+          <t>Attackers exploit this lack of context by using social engineering techniques to prime the user for an authorization request and thereby convince them to grant authorization. The social engineering techniques range in sophistication from messages misrepresenting the reason for receiving an authorization request to triggering a large volume of requests at an inconvenient time for the user, in the hope that the user will grant authorization to make the requests stop. <xref target="fig6"/> shows an example of such an attack.</t>
           <t>The ability to trigger authorization requests without user involvement can be exploited by an attacker to overwhelm users with a high volume of requests in a short period, increasing the likelihood of inadvertent approval.</t>
 <figure anchor="fig6">
   <name>Backchannel-Transferred Session Pattern Exploit</name>
@@ -877,7 +894,7 @@ Original:
 Perhaps:
    The attacker creates a
    phishing website, which will capture login QR codes from
-   the original website in real time and present them to the user.
+   the original website and present them to the user in real time.
 -->
 
           
@@ -993,7 +1010,7 @@ Perhaps:
           <t>The unauthenticated channel between the Consumption Device and Authorization Device allows attackers to obtain a QR code or user code in one location and display it in another location. Consequently, proximity-enforced cross-device flows are more resistant to CDCP attacks than proximity-less cross-device flows. Establishing proximity between the location of the Consumption Device and the Authorization Device limits an attacker's ability to launch attacks by sending user codes or QR codes to large numbers of users that are geographically distributed. Note that the authorization server typically cannot directly determine whether the Consumption Device and Authorization Device are physically close to each other. Instead, it must rely on the surrounding systems, protocols in use, device capabilities, or information it obtains from other systems to establish or verify proximity. The authorization server can validate information it receives, but it cannot independently measure or enforce proximity on its own. There are a number of ways to establish proximity, each with its own implementation benefits and limitations:</t>
           <ul spacing="normal">
             <li>
-              <t>Physical connectivity: This is a good indicator of proximity but requires specific ports, cables, and hardware, which may be challenging from a user experience perspective or may not be possible in certain settings (e.g., when USB ports are blocked or removed for security purposes). Physical connectivity may be better suited to dedicated hardware like FIDO devices that can be used with protocols that are resistant to the exploits described in this document. The use of physically connected devices may introduce additional security risks (e.g., data access or device compromise through malicious peripherals), the assessment and mitigation of which are beyond the scope of this document.</t>
+              <t>Physical connectivity: This is a good indicator of proximity but requires specific ports, cables, and hardware, and it may be challenging from a user experience perspective or may not be possible in certain settings (e.g., when USB ports are blocked or removed for security purposes). Physical connectivity may be better suited to dedicated hardware like FIDO devices that can be used with protocols that are resistant to the exploits described in this document. The use of physically connected devices may introduce additional security risks (e.g., data access or device compromise through malicious peripherals), the assessment and mitigation of which are beyond the scope of this document.</t>
             </li>
             <li>
               <t>Wireless proximity: Near Field Communications (NFC), Bluetooth Low Energy (BLE), and Ultra Wideband (UWB) services can be used to prove proximity between the two devices. NFC technology is widely deployed in mobile phones as part of payment solutions, but NFC readers are less widely deployed. BLE presents another alternative for establishing proximity but may present user experience challenges when setting up. UWB standards such as IEEE  802.15.4 and the IEEE 802.15.4z-2020 Amendment 1 enable secure ranging between devices and allow devices to establish proximity relative to each other <xref target="IEEE-802.15.4"/>. FIDO and WebAuthn-based cross-device flows leverage wireless proximity using BLE and are the <bcp14>RECOMMENDED</bcp14> approach for performing secure cross-device flows (see <xref target="fido"/>). For the presentation of digital credentials,	the W3C Digital Credentials API <xref target="W3C.DCAPI"/> can be used.	
@@ -1008,8 +1025,8 @@ Perhaps:
           </ul>
           <t>Depending on the risk profile and the threat model in which a system is operating, it <bcp14>MAY</bcp14> be necessary to use more than one mechanism to establish proximity to raise the bar for any potential attackers. Proximity mechanisms that rely on establishing a user's location or identifying a user's device <bcp14>SHOULD</bcp14> be evaluated for their privacy implications within the context of a specific application or deployment.</t>
 
-<!-- [rfced] Please review whether any of the notes (i.e., text prefaced with
-"Note:") in this document should be in the <aside> element. It is defined as "a
+<!-- [rfced] Please review whether the note in Section 6.1.1 (i.e., the text
+prefaced with "Note:") should be in the <aside> element. It is defined as "a
 container for content that is semantically less important or tangential to the
 content that surrounds it" (https://authors.ietf.org/en/rfcxml-vocabulary#aside).
 -->
@@ -1067,7 +1084,7 @@ Perhaps:
         <section anchor="trusted-networks">
           <name>Trusted Networks</name>
 
-<!-- [rfced] Is the information supplied by just the network operator (Perhaps
+<!-- [rfced] Is the information supplied by the network operator (Perhaps
 A) or by SIM or the network operator (Perhaps B)?
 
 Original:
@@ -1083,11 +1100,11 @@ Perhaps B:
    be inferred using information supplied by SIM or the network operator.
 -->
 
-<!-- [rfced] We have a question about "it SHOULD", which appears second sentence
-of each block (first sentence is included for context). Should "it SHOULD" be
-updated to "they SHOULD", "this mitigation SHOULD", or someting similar? We
-believe that the pronoun "it" refers to "network-level controls" and "rate
-limits".
+<!-- [rfced] We have a question about "it SHOULD", which appears in the second
+sentence of each block of text below (first sentence is included for context).
+Should "it SHOULD" be updated to "they SHOULD", "this mitigation SHOULD", or
+something similar? We believe that the pronoun "it" refers to "network-level
+controls" in the first text block and to "rate limits" in the second text block.
 
 Original:
    *Limitations:* Network level controls may not always be feasible,
@@ -1150,7 +1167,7 @@ Perhaps:
         </section>
         <section anchor="user-experience">
           <name>User Experience</name>
-          <t>The user experience <bcp14>SHOULD</bcp14> preserve the context within which the protocols were initiated and communicate this clearly to the user when they are asked to authorize, authenticate, or present a credential. In preserving the context, it should be clear to the user who invoked the flow why it was invoked and what the consequence of completing the authorization, authentication, or credential presentation is. The user experience <bcp14>SHOULD</bcp14> reinforce the message that unless the user initiated the authorization request, or was expecting it, they should decline the request.</t>
+          <t>The user experience <bcp14>SHOULD</bcp14> preserve the context within which the protocols were initiated and communicate this clearly to the user when they are asked to authorize, authenticate, or present a credential. In preserving the context, it should be clear to the user who invoked the flow, why it was invoked, and what the consequence of completing the authorization, authentication, or credential presentation is. The user experience <bcp14>SHOULD</bcp14> reinforce the message that unless the user initiated the authorization request, or was expecting it, they should decline the request.</t>
           <t>This information <bcp14>MAY</bcp14> be communicated graphically or in a simple message (e.g., "It looks like you are trying to access your files on a digital whiteboard in your city center office. Click here to grant access to your files. If you are not trying to access your files, you should decline this request and notify the security department").</t>
           <t>The user interface <bcp14>SHOULD</bcp14> provide an obvious and unambiguous way for the user to decline or cancel a request. To avoid accidental authorization grants, the "decline" option <bcp14>SHOULD</bcp14> be the default option or given similar prominence in the user experience as the "grant" option.</t>
           <t>If the user uses an application on a mobile device to scan a QR code, the application <bcp14>MAY</bcp14> display information advising the user under which conditions they should expect to be asked to scan a QR code and under which circumstances they should never scan a QR code (e.g., display a message that the QR code will only be displayed on kiosks within trusted locations or on trusted websites hosted on a specific domain, and never in email or other media and locations).</t>
@@ -1312,7 +1329,8 @@ Perhaps:
           </section>
           <section anchor="mitigations">
             <name>Mitigations</name>
-<!-- [rfced] In the sentences below, would it be helpful to clarity "the standard"?
+<!-- [rfced] In the sentences below, would it be helpful to clarify "the
+standard"?
 
 Original:
 
@@ -1555,9 +1573,11 @@ reference entries:
 [OpenID.Core]
 [W3C.DCAPI]
 
-c) FYI - The original URL for the reference [NEWDCPHISH] is no longer valid (https://o365blog.com/post/phishing/#new-phishing-technique-device-code-authentication).
-It appears the author moved their blog to a new domain (https://x.com/DrAzureAD/status/1579875043563438080).
-We have updated this reference to use the newer URL.
+c) FYI - The original URL for the reference [NEWDCPHISH] is no longer valid
+(https://o365blog.com/post/phishing/#new-phishing-technique-device-code-authentication).
+It appears the author moved their blog to a new domain
+(https://x.com/DrAzureAD/status/1579875043563438080). We have updated this
+reference to use the newer URL.
 
 Original:
    [NEWDCPHISH]
@@ -1573,7 +1593,9 @@ Updated:
               <https://aadinternals.com/post/phishing/>.
 
 
-d) FYI - The original URL for the reference [DCATTACK] redirects to an updated page (https://www.secureworks.com/blog/oauths-device-code-flow-abused-in-phishing-attacks).
+d) FYI - The original URL for the reference [DCATTACK] redirects to an updated
+page
+(https://www.secureworks.com/blog/oauths-device-code-flow-abused-in-phishing-attacks).
 It appears Secureworks was acquired by Sophos in February 2025
 (https://www.sophos.com/en-us/secureworks-sophos-acquistion).  We have updated
 this reference to match the information at the new URL. Please let us know if
@@ -1979,8 +2001,7 @@ Updated:
     </section>
   </back>
 </rfc>
-<!-- [rfced] Please review the following questions regarding the terminology
-used in this document:
+<!-- [rfced] Terminology
 
 a) We note inconsistencies in the terms below throughout the text. Should these
 be uniform? If so, please let us know which form is preferred.
@@ -1988,17 +2009,16 @@ be uniform? If so, please let us know which form is preferred.
 Authorization Server
 authorization server
 
-defense in depth
-defence in-depth
-defence-in-depth defence
-  Note: We updated to use "defense" (with "s"). We see that the NIST Glossary, which is an informative reference for this document, uses "defense-in-depth" (see https://csrc.nist.gov/glossary/term/defense_in_depth). This term has not been used often in the RFC Series. We see a few instances of "defense in depth" (open) and "defense-in-depth" (hyphenated) in published RFCs. The hyphenated forms are mostly used in the attributive position (i.e., before a noun) such as "defense-in-depth approach". Also will readers know what this term means? Should it  be added to Section 1.4 ("Conventions and Terminology")?
-
-
 sender-constrained tokens
 sender-constraining tokens
 
+defense in depth
+defence in-depth
+defence-in-depth defence
+  Note: We updated to use "defense" (with "s"). We see that the NIST Glossary, which is an informative reference for this document, uses "defense-in-depth" with hyphens (see https://csrc.nist.gov/glossary/term/defense_in_depth). This term has not been used often in the RFC Series. We see a few instances of "defense in depth" (open) and "defense-in-depth" (hyphenated) in published RFCs. The hyphenated forms are mostly used in the attributive position (i.e., before a noun) such as "defense-in-depth approach". Also will readers know what this term means? Should it  be added to Section 1.4 ("Conventions and Terminology")?
 
-) In general text, should the names of patterns be capitalized or lowercased? We
+
+b) In general text, should the names of patterns be capitalized or lowercased? We
 see both forms in the document.
 
 Examples of lowercase:
@@ -2033,33 +2053,30 @@ Examples of capitalized:
    Pattern, Section 3.1.1).
 
 
-) Would you like to make the following capitalization changes per usage in RFCs 8628 and 6749? Or do you prefer the current capitalization?
+c) Would you like to make the following capitalization changes per usage in RFCs
+8628 and 6749? Or do you prefer the current capitalization?
 
 "Device Authorization Grant" to "device authorization grant" (per RFC 8628)
 "Authorization Code Grant" to "authorization code grant" (per RFC 6749)
 "Authorization Code Flow" to "authorization code flow" (per RFC 6749)
 
 
-) We see the following forms in the document. We did not make any changes as
-the meaning is clear, but let us know if you prefer a certain form or would like
-for these to be consistent. Note that plurals of these forms also appear in the
-document.
+d) We see the following forms in the document; we did not make any changes as
+the meaning is clear, but let us know if you would like for the usage to be
+consistent. Note that plurals of these forms also appear in the document.
 
 user code or QR code
 user or QR code
 QR code or user code 
 QR or user code
-
 -->
 
 <!-- [rfced] Abbreviations
 
-c) FYI - We have added expansions for the following abbreviations per Section
-3.6 of RFC 7322 ("RFC Style Guide"). Please review each expansion in the
-document carefully to ensure correctness.
+a) FYI - We have expanded the following abbreviation per Section 3.6 of RFC 7322
+("RFC Style Guide"). Please review to ensure correctness.
 
 Proof Key for Code Exchange (PKCE)
-
 
 b) How may we expand the abbreviations below?
 
@@ -2069,7 +2086,7 @@ FAPI
 SATMC
 
 c) The abbreviation CIBA is expanded multiple times in the document; in fact,
-CIBA is expanded every time it is used except for two instances. Would you like
+it is expanded every time it is used except for two instances. Would you like
 to expand the first instance in the text and then use the abbreviation after?
 -->
 
@@ -2078,12 +2095,12 @@ Style Guide <https://www.rfc-editor.org/styleguide/part2/#inclusive_language>
 and let us know if any changes are needed.  Updates of this nature typically
 result in more precise language, which is helpful for readers.
 
-For example, please consider whether "native" and "tradition" should be
+For example, please consider whether "native" and "traditional" should be
 updated throughout.
 
 While the NIST website 
 <https://web.archive.org/web/20250214092458/https://www.nist.gov/nist-research-library/nist-technical-series-publications-author-instructions#table1>
-indicates that "tradition" is potentially biased, it is also ambiguous.  
-"Tradition" is a subjective term, as it is not the same for everyone.
+indicates that "traditional" is potentially biased, it is also ambiguous.  
+"Traditional" is a subjective term, as it is not the same for everyone.
 
 -->
