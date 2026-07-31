@@ -1835,7 +1835,7 @@ Updated:
         </reference>
         <reference anchor="OpenID.VP" target="https://openid.net/specs/openid-4-verifiable-presentations-1_0.html">
           <front>
-            <title>OpenID for Verifiable Credential Presentations</title>
+            <title>OpenID for Verifiable Presentations 1.0</title>
             <author initials="O." surname="Terbu" fullname="Oliver Terbu">
               <organization>MATTR</organization>
             </author>

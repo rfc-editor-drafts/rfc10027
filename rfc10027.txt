@@ -2638,8 +2638,8 @@ Table of Contents
 
    [OpenID.VP]
               Terbu, O., Lodderstedt, T., Yasuda, K., Fett, D., and J.
-              Heenan, "OpenID for Verifiable Credential Presentations",
-              July 2025, <https://openid.net/specs/openid-4-verifiable-
+              Heenan, "OpenID for Verifiable Presentations 1.0", July
+              2025, <https://openid.net/specs/openid-4-verifiable-
               presentations-1_0.html>.
 
    [OpenID.VCI]
