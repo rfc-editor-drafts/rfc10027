@@ -1,5 +1,2 @@
-# RFC-to-be 10027 - draft-ietf-oauth-cross-device-security
-
-This repo was created during Second Edit.
-
-Final Review editor will handle Final Review in inc-work and then upload final files to this repo before hand off to Publisher.
+# Publication repo for RFC 10027
+See https://www.rfc-editor.org/info/rfc10027/ for the most current information related to this document.
