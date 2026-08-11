@@ -1,3 +1,29 @@
 {
-  "publications": []
+  "publications": [
+    {
+      "rfcNumber": 10027,
+      "files": [
+        {
+          "path": "rfc10027.html",
+          "type": "html"
+        },
+        {
+          "path": "rfc10027.notprepped.xml",
+          "type": "notprepped"
+        },
+        {
+          "path": "rfc10027.pdf",
+          "type": "pdf"
+        },
+        {
+          "path": "rfc10027.txt",
+          "type": "txt"
+        },
+        {
+          "path": "rfc10027.xml",
+          "type": "xml"
+        }
+      ]
+    }
+  ]
 }
